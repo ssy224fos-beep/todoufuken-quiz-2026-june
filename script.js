@@ -15,49 +15,58 @@ let spinning = false;
 
 const rouletteList = document.getElementById("roulette-list");
 const result = document.getElementById("result");
-const remainingLabel = document.getElementById("remaining");
-const startBtn = document.getElementById("startBtn");
-const resetBtn = document.getElementById("resetBtn");
-const mapBtn = document.getElementById("mapBtn");
+
+const remainingLabel =
+    document.getElementById("remaining");
 
 function updateRemaining() {
-    remainingLabel.textContent = "残り：" + remaining.length + "県";
+    remainingLabel.textContent =
+        "残り：" + remaining.length + "県";
 }
 
-function createRouletteItems() {
+function buildRoulette() {
 
     rouletteList.innerHTML = "";
 
-    const displayList = [...prefectures, ...prefectures, ...prefectures];
+    for (let loop = 0; loop < 20; loop++) {
 
-    displayList.forEach(pref => {
-        const div = document.createElement("div");
-        div.className = "prefecture";
-        div.textContent = pref;
-        rouletteList.appendChild(div);
-    });
-}
+        prefectures.forEach(pref => {
 
-createRouletteItems();
-updateRemaining();
+            const div = document.createElement("div");
 
-startBtn.addEventListener("click", () => {
+            div.className = "prefecture";
+            div.textContent = pref;
 
-    if (spinning) {
-        return;
+            rouletteList.appendChild(div);
+
+        });
+
     }
 
+}
+
+buildRoulette();
+updateRemaining();
+
+document.getElementById("startBtn")
+.addEventListener("click", () => {
+
+    if (spinning) return;
+
     if (remaining.length === 0) {
+
         result.textContent = "抽選終了！";
         return;
+
     }
 
     spinning = true;
 
-    startBtn.disabled = true;
+    const winnerIndex =
+        Math.floor(Math.random() * remaining.length);
 
-    const winnerIndex = Math.floor(Math.random() * remaining.length);
-    const winner = remaining[winnerIndex];
+    const winner =
+        remaining[winnerIndex];
 
     result.textContent = "";
 
@@ -66,21 +75,31 @@ startBtn.addEventListener("click", () => {
 
     void rouletteList.offsetWidth;
 
-    const duration = 3000 + Math.random() * 3000;
-
     const itemHeight = 140;
 
-    const visualIndex =
-        prefectures.length +
+    const spinLoops =
+        10 + Math.floor(Math.random() * 6);
+
+    const winnerPosition =
         prefectures.indexOf(winner);
 
-    const targetY = visualIndex * itemHeight;
+    const targetPosition =
+        ((spinLoops * prefectures.length)
+        + winnerPosition)
+        * itemHeight;
+
+    const duration =
+        3000 + Math.random() * 3000;
 
     rouletteList.style.transition =
-        "transform " + duration + "ms cubic-bezier(0.15,0.85,0.15,1)";
+        "transform " +
+        duration +
+        "ms cubic-bezier(0.08,0.95,0.15,1)";
 
     rouletteList.style.transform =
-        "translateY(-" + targetY + "px)";
+        "translateY(-" +
+        targetPosition +
+        "px)";
 
     setTimeout(() => {
 
@@ -95,17 +114,15 @@ startBtn.addEventListener("click", () => {
         updateRemaining();
 
         spinning = false;
-        startBtn.disabled = false;
 
-    }, duration + 100);
+    }, duration + 50);
 
 });
 
-resetBtn.addEventListener("click", () => {
+document.getElementById("resetBtn")
+.addEventListener("click", () => {
 
-    const ok = confirm("本当にリセットしますか？");
-
-    if (!ok) {
+    if (!confirm("本当にリセットしますか？")) {
         return;
     }
 
@@ -120,12 +137,12 @@ resetBtn.addEventListener("click", () => {
 
 });
 
-mapBtn.addEventListener("click", () => {
+document.getElementById("mapBtn")
+.addEventListener("click", () => {
 
-    const mapArea = document.getElementById("mapArea");
-
-    mapArea.classList.toggle("hidden");
+    document
+        .getElementById("mapArea")
+        .classList
+        .toggle("hidden");
 
 });
-
-console.log("Roulette Loaded");
