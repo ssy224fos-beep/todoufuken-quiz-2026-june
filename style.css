@@ -1,0 +1,126 @@
+```css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: white;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.roulette-container {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roulette-window {
+    width: 500px;
+    height: 140px;
+    border: 5px solid gold;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+    border-radius: 20px;
+}
+
+#roulette-list {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.prefecture {
+    height: 140px;
+    line-height: 140px;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.result {
+    margin-top: 30px;
+    height: 200px;
+    font-size: 8rem;
+    font-weight: bold;
+    color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result.show {
+    animation: zoom 0.6s ease;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(0.5);
+    }
+
+    60% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#startBtn {
+    background: #28a745;
+    color: white;
+}
+
+#resetBtn {
+    background: #dc3545;
+    color: white;
+}
+
+#mapBtn {
+    background: #007bff;
+    color: white;
+}
+
+.map-area {
+    margin-top: 20px;
+    height: 220px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+```
