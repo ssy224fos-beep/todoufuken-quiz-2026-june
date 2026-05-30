@@ -21,7 +21,7 @@ const remainingLabel =
 
 function updateRemaining() {
     remainingLabel.textContent =
-        "残り：" + remaining.length + "県";
+        "残り：" + remaining.length + "都道府県";
 }
 
 function buildRoulette() {
