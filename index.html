@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -5,18 +7,25 @@
     <title>47都道府県ルーレット</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
+```
+<!-- 左側：ルーレットエリア -->
+<main class="main-area">
+
     <div class="header">
-        <div id="remaining">残り：47都道府県</div>
+        <div id="remaining">残り：47県</div>
     </div>
 
     <div class="roulette-container">
+
         <div class="roulette-window">
             <div id="roulette-list"></div>
         </div>
+
     </div>
 
     <div id="result" class="result">
@@ -30,11 +39,28 @@
     </div>
 
     <div id="mapArea" class="map-area hidden">
-        日本地図は第2弾で実装予定
+        日本地図は第4弾で実装予定
     </div>
+
+</main>
+
+
+<!-- 右側：都道府県一覧 -->
+<aside class="prefecture-panel">
+
+    <div class="panel-title">
+        都道府県
+    </div>
+
+    <div id="prefectureList" class="prefecture-list">
+    </div>
+
+</aside>
+```
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
