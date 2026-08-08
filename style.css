@@ -54,19 +54,6 @@ body {
     background: #000;
 }
 
-#remaining {
-    width: 100%;
-
-    text-align: center;
-
-    font-size: 2rem;
-    font-weight: bold;
-
-    color: #fff;
-
-    margin-bottom: 15px;
-}
-
 .roulette-window {
     width: min(620px, 90%);
     height: 180px;
@@ -79,19 +66,18 @@ body {
         linear-gradient(
             180deg,
             #111 0%,
-            #555 18%,
+            #444 18%,
             #222 50%,
-            #555 82%,
+            #444 82%,
             #111 100%
         );
 
-    border: 6px solid #d4af37;
+    border: 5px solid #c9a227;
     border-radius: 22px;
 
     box-shadow:
-        0 0 10px #fff,
-        0 0 25px #d4af37,
-        inset 0 0 25px rgba(255,255,255,0.35);
+        0 0 8px rgba(255, 215, 0, 0.35),
+        inset 0 0 15px rgba(255, 255, 255, 0.15);
 
     -webkit-mask-image:
         linear-gradient(
@@ -122,7 +108,7 @@ body {
 
     top: 50%;
 
-    height: 4px;
+    height: 3px;
 
     transform: translateY(-50%);
 
@@ -130,12 +116,12 @@ body {
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,215,0,0.9),
+            rgba(255, 215, 0, 0.7),
             transparent
         );
 
     box-shadow:
-        0 0 12px rgba(255,215,0,0.8);
+        0 0 6px rgba(255, 215, 0, 0.5);
 
     z-index: 5;
 
@@ -167,15 +153,14 @@ body {
     color: #fff;
 
     text-shadow:
-        0 0 5px #fff,
-        0 0 15px rgba(255,255,255,0.8),
-        0 0 25px rgba(255,215,0,0.5);
+        0 0 3px rgba(255, 255, 255, 0.5),
+        0 0 8px rgba(255, 215, 0, 0.25);
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,0.08),
+            rgba(255, 255, 255, 0.05),
             transparent
         );
 }
@@ -197,12 +182,11 @@ body {
 
     font-weight: bold;
 
-    color: gold;
+    color: #e6c34a;
 
     text-shadow:
-        0 0 8px #fff,
-        0 0 18px gold,
-        0 0 35px rgba(255,215,0,0.8);
+        0 0 4px rgba(255, 255, 255, 0.5),
+        0 0 10px rgba(255, 215, 0, 0.35);
 }
 
 .result-show {
@@ -217,7 +201,7 @@ body {
     }
 
     55% {
-        transform: scale(1.25);
+        transform: scale(1.2);
         opacity: 1;
     }
 
@@ -265,7 +249,7 @@ button {
 }
 
 button:hover {
-    filter: brightness(1.15);
+    filter: brightness(1.1);
 }
 
 button:active {
@@ -282,7 +266,7 @@ button:disabled {
     color: #fff;
 
     box-shadow:
-        0 0 12px rgba(40,167,69,0.5);
+        0 0 8px rgba(40, 167, 69, 0.35);
 }
 
 #resetBtn {
@@ -290,7 +274,7 @@ button:disabled {
     color: #fff;
 
     box-shadow:
-        0 0 12px rgba(220,53,69,0.4);
+        0 0 8px rgba(220, 53, 69, 0.3);
 }
 
 #mapBtn {
@@ -298,7 +282,7 @@ button:disabled {
     color: #fff;
 
     box-shadow:
-        0 0 12px rgba(0,123,255,0.4);
+        0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 .prefecture-panel {
@@ -333,12 +317,41 @@ button:disabled {
     font-size: 1.5rem;
     font-weight: bold;
 
-    color: gold;
+    color: #e6c34a;
 
     padding-bottom: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 
     border-bottom: 1px solid #555;
+}
+
+.status-area {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+    padding: 7px 8px;
+
+    background: #222;
+
+    border-radius: 8px;
+
+    font-size: 0.95rem;
+    font-weight: bold;
+
+    color: #fff;
+}
+
+#drawnCount {
+    color: #f0c94a;
+}
+
+#remainingCount {
+    color: #fff;
 }
 
 .prefecture-list {
@@ -365,7 +378,7 @@ button:disabled {
     color: #fff;
 
     background:
-        rgba(255,255,255,0.06);
+        rgba(255, 255, 255, 0.06);
 
     border-radius: 5px;
 
@@ -379,7 +392,7 @@ button:disabled {
     color: #666;
 
     background:
-        rgba(80,80,80,0.15);
+        rgba(80, 80, 80, 0.15);
 
     text-decoration: line-through;
 
@@ -416,11 +429,6 @@ button:disabled {
         gap: 10px;
     }
 
-    #remaining {
-        font-size: 1.4rem;
-        margin-bottom: 5px;
-    }
-
     .roulette-window {
         height: 150px;
     }
@@ -454,6 +462,12 @@ button:disabled {
         font-size: 1.2rem;
         padding-bottom: 5px;
         margin-bottom: 5px;
+    }
+
+    .status-area {
+        font-size: 0.72rem;
+        margin-bottom: 6px;
+        padding: 5px;
     }
 
     .prefecture-item {

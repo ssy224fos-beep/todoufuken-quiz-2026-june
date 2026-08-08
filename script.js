@@ -15,71 +15,105 @@ let spinning = false;
 
 const rouletteList = document.getElementById("roulette-list");
 const result = document.getElementById("result");
-const remainingLabel = document.getElementById("remaining");
+const drawnCount = document.getElementById("drawnCount");
+const remainingCount = document.getElementById("remainingCount");
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
 const mapBtn = document.getElementById("mapBtn");
 const prefectureList = document.getElementById("prefectureList");
 
-function updateRemaining() {
-    remainingLabel.textContent =
-        "残り：" + remaining.length + "都道府県";
+function updateStatus() {
+
+    const drawn =
+        prefectures.length - remaining.length;
+
+    drawnCount.textContent =
+        "抽選済み：" + drawn + "県";
+
+    remainingCount.textContent =
+        "残り：" + remaining.length + "県";
 }
 
 function createPrefectureList() {
+
     prefectureList.innerHTML = "";
 
     prefectures.forEach(function(prefecture) {
-        const item = document.createElement("div");
 
-        item.className = "prefecture-item";
-        item.textContent = prefecture;
-        item.dataset.prefecture = prefecture;
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "prefecture-item";
+
+        item.textContent =
+            prefecture;
+
+        item.dataset.prefecture =
+            prefecture;
 
         prefectureList.appendChild(item);
     });
 }
 
 function updatePrefectureList() {
+
     const items =
         document.querySelectorAll(".prefecture-item");
 
     items.forEach(function(item) {
+
         const prefecture =
             item.dataset.prefecture;
 
         if (remaining.includes(prefecture)) {
+
             item.classList.remove("used");
+
         } else {
+
             item.classList.add("used");
         }
     });
 }
 
 function createRouletteItems() {
+
     rouletteList.innerHTML = "";
 
     const loopList = [];
 
     for (let i = 0; i < 8; i++) {
+
         prefectures.forEach(function(prefecture) {
+
             loopList.push(prefecture);
+
         });
     }
 
     loopList.forEach(function(prefecture) {
-        const div = document.createElement("div");
 
-        div.className = "prefecture";
-        div.textContent = prefecture;
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "prefecture";
+
+        div.textContent =
+            prefecture;
 
         rouletteList.appendChild(div);
+
     });
 }
 
 createRouletteItems();
+
 createPrefectureList();
-updateRemaining();
+
+updateStatus();
+
 updatePrefectureList();
 
 startBtn.addEventListener("click", function() {
@@ -89,18 +123,23 @@ startBtn.addEventListener("click", function() {
     }
 
     if (remaining.length === 0) {
-        result.textContent = "抽選終了！";
+
+        result.textContent =
+            "抽選終了！";
+
         return;
     }
 
     spinning = true;
+
     startBtn.disabled = true;
 
     result.classList.remove("result-show");
 
     const winnerIndex =
         Math.floor(
-            Math.random() * remaining.length
+            Math.random() *
+            remaining.length
         );
 
     const winner =
@@ -119,19 +158,26 @@ startBtn.addEventListener("click", function() {
         prefectures.length;
 
     const spinLoops =
-        5 + Math.floor(Math.random() * 3);
+        5 +
+        Math.floor(
+            Math.random() * 3
+        );
 
     const targetIndex =
-        spinLoops * listLength +
+        spinLoops *
+        listLength +
         winnerPosition;
 
     const targetPosition =
-        targetIndex * itemHeight;
+        targetIndex *
+        itemHeight;
 
     const duration =
-        4500 + Math.random() * 1500;
+        4500 +
+        Math.random() * 1500;
 
-    rouletteList.style.transition = "none";
+    rouletteList.style.transition =
+        "none";
 
     rouletteList.style.transform =
         "translateY(0px)";
@@ -151,23 +197,30 @@ startBtn.addEventListener("click", function() {
 
     setTimeout(function() {
 
-        result.textContent = winner;
+        result.textContent =
+            winner;
 
-        result.classList.remove("result-show");
+        result.classList.remove(
+            "result-show"
+        );
 
         void result.offsetWidth;
 
-        result.classList.add("result-show");
+        result.classList.add(
+            "result-show"
+        );
 
         remaining.splice(
             winnerIndex,
             1
         );
 
-        updateRemaining();
+        updateStatus();
+
         updatePrefectureList();
 
         spinning = false;
+
         startBtn.disabled = false;
 
     }, duration + 100);
@@ -181,24 +234,32 @@ resetBtn.addEventListener("click", function() {
 
     remaining = [...prefectures];
 
-    updateRemaining();
+    updateStatus();
+
     updatePrefectureList();
 
-    result.textContent = "START";
+    result.textContent =
+        "START";
 
-    result.classList.remove("result-show");
+    result.classList.remove(
+        "result-show"
+    );
 
-    rouletteList.style.transition = "none";
+    rouletteList.style.transition =
+        "none";
 
     rouletteList.style.transform =
         "translateY(0px)";
 
     spinning = false;
+
     startBtn.disabled = false;
 });
 
 mapBtn.addEventListener("click", function() {
 
-    alert("日本地図機能は今後追加予定です。");
+    alert(
+        "日本地図機能は今後追加予定です。"
+    );
 
 });
