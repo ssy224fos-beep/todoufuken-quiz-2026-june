@@ -483,11 +483,34 @@ button:disabled {
         gap: 10px;
     }
 
-    .page-title::before,
-    .page-title::after {
-        font-size: 1rem;
-    }
+	.page-title::before,
+	.page-title::after {
+	    content: "";
+	    display: block;
+	
+	    width: 18px;
+	    height: 18px;
+	
+	    background: #ffd84d;
+	
+	    clip-path: polygon(
+	        50% 0%,
+	        61% 35%,
+	        100% 38%,
+	        70% 60%,
+	        79% 100%,
+	        50% 75%,
+	        21% 100%,
+	        30% 60%,
+	        0% 38%,
+	        39% 35%
+	    );
 
+    filter:
+        drop-shadow(
+            0 0 4px rgba(255, 216, 77, 0.35)
+        );
+}
     .container {
         height: calc(100vh - 55px);
         padding: 6px 10px 10px;
