@@ -1,742 +1,477 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body {
-width: 100%;
-height: 100%;
-background: #000;
-color: #fff;
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Helvetica Neue",
-"Yu Gothic",
-"Meiryo",
-sans-serif;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
 }
 
 body {
-overflow: hidden;
+    overflow: hidden;
 }
-
-/* ================================
-タイトル
-================================ */
-
-.page-title {
-height: 75px;
-
-```
-display: flex;
-align-items: center;
-justify-content: center;
-
-gap: 14px;
-
-color: #fff;
-
-font-size: clamp(2rem, 4vw, 3.2rem);
-font-weight: 900;
-
-letter-spacing: 0.04em;
-
-position: relative;
-
-z-index: 10;
-```
-
-}
-
-/* 左右の飾り
-特殊文字は使用せずCSSだけで作成 */
-
-.page-title::before,
-.page-title::after {
-content: "";
-
-```
-display: block;
-
-width: 16px;
-height: 16px;
-
-background: #ffd84d;
-
-transform: rotate(45deg);
-
-border-radius: 3px;
-
-box-shadow:
-    0 0 5px rgba(255, 216, 77, 0.35);
-```
-
-}
-
-.page-title span {
-color: #fff;
-
-```
-text-shadow:
-    2px 2px 0 #2455a4;
-```
-
-}
-
-.page-title strong {
-color: #ffcf33;
-
-```
-font-size: 1.15em;
-
-font-style: italic;
-
-text-shadow:
-    2px 2px 0 #e04a3a,
-    4px 4px 0 #244f91;
-
-letter-spacing: 0.03em;
-```
-
-}
-
-/* ================================
-メイン画面
-================================ */
 
 .container {
-width: 100vw;
-height: calc(100vh - 75px);
+    width: 100vw;
+    height: 100vh;
 
-```
-display: flex;
-flex-direction: row;
-flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
-align-items: stretch;
+    align-items: stretch;
 
-gap: 20px;
+    gap: 20px;
+    padding: 20px;
 
-padding: 10px 20px 20px;
+    background: #000;
 
-background: #000;
-
-overflow: hidden;
-```
-
+    overflow: hidden;
 }
-
-/* ================================
-ルーレットエリア
-================================ */
 
 .roulette-area {
-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
 
-```
-min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-height: 100%;
-
-display: flex;
-flex-direction: column;
-
-align-items: center;
-justify-content: flex-start;
-
-background: #000;
-```
-
+    background: #000;
 }
-
-/* ================================
-ルーレット窓
-================================ */
 
 .roulette-window {
-width: min(620px, 90%);
+    width: min(620px, 90%);
+    height: 180px;
 
-```
-height: 180px;
+    overflow: hidden;
 
-overflow: hidden;
+    position: relative;
 
-position: relative;
+    background:
+        linear-gradient(
+            180deg,
+            #111 0%,
+            #444 18%,
+            #222 50%,
+            #444 82%,
+            #111 100%
+        );
 
-background:
-    linear-gradient(
-        180deg,
-        #111 0%,
-        #444 18%,
-        #222 50%,
-        #444 82%,
-        #111 100%
-    );
+    border: 5px solid #c9a227;
+    border-radius: 22px;
 
-border: 5px solid #c9a227;
+    box-shadow:
+        0 0 8px rgba(255, 215, 0, 0.35),
+        inset 0 0 15px rgba(255, 255, 255, 0.15);
 
-border-radius: 22px;
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            #000 15%,
+            #000 85%,
+            transparent 100%
+        );
 
-box-shadow:
-    0 0 8px rgba(255, 215, 0, 0.35),
-    inset 0 0 15px rgba(255, 255, 255, 0.15);
-
--webkit-mask-image:
-    linear-gradient(
-        to bottom,
-        transparent 0%,
-        #000 15%,
-        #000 85%,
-        transparent 100%
-    );
-
-mask-image:
-    linear-gradient(
-        to bottom,
-        transparent 0%,
-        #000 15%,
-        #000 85%,
-        transparent 100%
-    );
-```
-
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            #000 15%,
+            #000 85%,
+            transparent 100%
+        );
 }
-
-/* 中央ライン */
 
 .roulette-window::before {
-content: "";
+    content: "";
 
-```
-position: absolute;
+    position: absolute;
 
-left: 0;
-right: 0;
+    left: 0;
+    right: 0;
 
-top: 50%;
+    top: 50%;
 
-height: 3px;
+    height: 3px;
 
-transform: translateY(-50%);
+    transform: translateY(-50%);
 
-background:
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 215, 0, 0.7),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 215, 0, 0.7),
+            transparent
+        );
 
-box-shadow:
-    0 0 6px rgba(255, 215, 0, 0.5);
+    box-shadow:
+        0 0 6px rgba(255, 215, 0, 0.5);
 
-z-index: 5;
+    z-index: 5;
 
-pointer-events: none;
-```
-
+    pointer-events: none;
 }
-
-/* ================================
-ルーレットリスト
-================================ */
 
 #roulette-list {
-position: absolute;
+    position: absolute;
 
-```
-top: 0;
-left: 0;
+    top: 0;
+    left: 0;
 
-width: 100%;
+    width: 100%;
 
-will-change: transform;
-```
-
+    will-change: transform;
 }
-
-/* ================================
-都道府県名
-================================ */
 
 .prefecture {
-width: 100%;
+    width: 100%;
+    height: 180px;
 
-```
-height: 180px;
+    line-height: 180px;
 
-line-height: 180px;
+    text-align: center;
 
-text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
 
-font-size: 3.5rem;
+    color: #fff;
 
-font-weight: bold;
+    text-shadow:
+        0 0 3px rgba(255, 255, 255, 0.5),
+        0 0 8px rgba(255, 215, 0, 0.25);
 
-color: #fff;
-
-text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.5),
-    0 0 8px rgba(255, 215, 0, 0.25);
-
-background:
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.05),
-        transparent
-    );
-```
-
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent
+        );
 }
-
-/* ================================
-当選結果
-================================ */
 
 #result {
-width: 100%;
+    width: 100%;
+    height: 190px;
 
-```
-height: 190px;
+    margin-top: 20px;
 
-margin-top: 20px;
+    display: flex;
 
-display: flex;
+    align-items: center;
+    justify-content: center;
 
-align-items: center;
-justify-content: center;
+    text-align: center;
 
-text-align: center;
+    font-size: clamp(4rem, 8vw, 8rem);
 
-font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: bold;
 
-font-weight: bold;
+    color: #e6c34a;
 
-color: #e6c34a;
-
-text-shadow:
-    0 0 4px rgba(255, 255, 255, 0.5),
-    0 0 10px rgba(255, 215, 0, 0.35);
-```
-
+    text-shadow:
+        0 0 4px rgba(255, 255, 255, 0.5),
+        0 0 10px rgba(255, 215, 0, 0.35);
 }
 
-/* 当選時アニメーション */
-
 .result-show {
-animation: resultZoom 0.7s ease;
+    animation: resultZoom 0.7s ease;
 }
 
 @keyframes resultZoom {
 
-```
-0% {
-    transform: scale(0.4);
-    opacity: 0;
-}
+    0% {
+        transform: scale(0.4);
+        opacity: 0;
+    }
 
-55% {
-    transform: scale(1.2);
-    opacity: 1;
-}
+    55% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
 
-75% {
-    transform: scale(0.95);
-}
+    75% {
+        transform: scale(0.95);
+    }
 
-100% {
-    transform: scale(1);
-    opacity: 1;
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
-```
-
-}
-
-/* ================================
-ボタン
-================================ */
 
 .buttons {
-display: flex;
+    display: flex;
 
-```
-flex-direction: row;
-flex-wrap: nowrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
-justify-content: center;
-align-items: center;
+    justify-content: center;
+    align-items: center;
 
-gap: 12px;
+    gap: 12px;
 
-margin-top: 10px;
-```
-
+    margin-top: 10px;
 }
 
 button {
-border: none;
+    border: none;
 
-```
-border-radius: 12px;
+    border-radius: 12px;
 
-padding: 12px 24px;
+    padding: 12px 24px;
 
-font-size: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 
-font-weight: bold;
+    color: #fff;
 
-color: #fff;
+    cursor: pointer;
 
-cursor: pointer;
-
-transition:
-    transform 0.1s,
-    filter 0.15s;
-```
-
+    transition:
+        transform 0.1s,
+        filter 0.15s;
 }
 
 button:hover {
-filter: brightness(1.1);
+    filter: brightness(1.1);
 }
 
 button:active {
-transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 button:disabled {
-opacity: 0.5;
-
-```
-cursor: default;
-```
-
+    opacity: 0.5;
+    cursor: default;
 }
-
-/* スタート */
 
 #startBtn {
-background: #28a745;
+    background: #28a745;
+    color: #fff;
 
-```
-color: #fff;
-
-box-shadow:
-    0 0 8px rgba(40, 167, 69, 0.35);
-```
-
+    box-shadow:
+        0 0 8px rgba(40, 167, 69, 0.35);
 }
-
-/* リセット */
 
 #resetBtn {
-background: #dc3545;
+    background: #dc3545;
+    color: #fff;
 
-```
-color: #fff;
-
-box-shadow:
-    0 0 8px rgba(220, 53, 69, 0.3);
-```
-
+    box-shadow:
+        0 0 8px rgba(220, 53, 69, 0.3);
 }
-
-/* 地図 */
 
 #mapBtn {
-background: #007bff;
+    background: #007bff;
+    color: #fff;
 
-```
-color: #fff;
-
-box-shadow:
-    0 0 8px rgba(0, 123, 255, 0.3);
-```
-
+    box-shadow:
+        0 0 8px rgba(0, 123, 255, 0.3);
 }
-
-/* ================================
-右側 都道府県パネル
-================================ */
 
 .prefecture-panel {
-flex: 0 0 330px;
+    flex: 0 0 330px;
 
-```
-width: 330px;
+    width: 330px;
+    min-width: 330px;
 
-min-width: 330px;
+    height: 100%;
 
-height: 100%;
+    padding: 15px;
 
-padding: 15px;
+    background:
+        linear-gradient(
+            180deg,
+            #181818,
+            #080808
+        );
 
-background:
-    linear-gradient(
-        180deg,
-        #181818,
-        #080808
-    );
+    border: 2px solid #444;
 
-border: 2px solid #444;
+    border-radius: 15px;
 
-border-radius: 15px;
+    overflow: hidden;
 
-overflow: hidden;
-
-position: relative;
-```
-
+    position: relative;
 }
-
-/* パネルタイトル */
 
 .panel-title {
-text-align: center;
+    text-align: center;
 
-```
-font-size: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
 
-font-weight: bold;
+    color: #e6c34a;
 
-color: #e6c34a;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
 
-padding-bottom: 10px;
-
-margin-bottom: 8px;
-
-border-bottom: 1px solid #555;
-```
-
+    border-bottom: 1px solid #555;
 }
 
-/* ================================
-抽選数・残り数
-================================ */
-
 .status-area {
-display: flex;
+    display: flex;
 
-```
-justify-content: space-between;
+    justify-content: space-between;
+    align-items: center;
 
-align-items: center;
+    gap: 8px;
 
-gap: 8px;
+    margin-bottom: 10px;
+    padding: 7px 8px;
 
-margin-bottom: 10px;
+    background: #222;
 
-padding: 7px 8px;
+    border-radius: 8px;
 
-background: #222;
+    font-size: 0.95rem;
+    font-weight: bold;
 
-border-radius: 8px;
-
-font-size: 0.95rem;
-
-font-weight: bold;
-
-color: #fff;
-```
-
+    color: #fff;
 }
 
 #drawnCount {
-color: #f0c94a;
+    color: #f0c94a;
 }
 
 #remainingCount {
-color: #fff;
+    color: #fff;
 }
 
-/* ================================
-都道府県一覧
-================================ */
-
 .prefecture-list {
-width: 100%;
+    width: 100%;
 
-```
-display: grid;
+    display: grid;
 
-grid-template-columns:
-    repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-gap: 5px;
+    gap: 5px;
 
-align-content: start;
-```
-
+    align-content: start;
 }
 
 .prefecture-item {
-padding: 6px 2px;
+    padding: 6px 2px;
 
-```
-text-align: center;
+    text-align: center;
 
-font-size: 0.9rem;
+    font-size: 0.9rem;
 
-white-space: nowrap;
+    white-space: nowrap;
 
-color: #fff;
+    color: #fff;
 
-background:
-    rgba(255, 255, 255, 0.06);
+    background:
+        rgba(255, 255, 255, 0.06);
 
-border-radius: 5px;
+    border-radius: 5px;
 
-transition:
-    color 0.3s,
-    background 0.3s,
-    opacity 0.3s;
-```
-
+    transition:
+        color 0.3s,
+        background 0.3s,
+        opacity 0.3s;
 }
-
-/* 抽選済み */
 
 .prefecture-item.used {
-color: #666;
+    color: #666;
 
-```
-background:
-    rgba(80, 80, 80, 0.15);
+    background:
+        rgba(80, 80, 80, 0.15);
 
-text-decoration: line-through;
+    text-decoration: line-through;
 
-opacity: 0.55;
-```
-
+    opacity: 0.55;
 }
-
-/* ================================
-画面幅が狭い場合
-================================ */
 
 @media (max-width: 1100px) {
 
-```
-.container {
-    gap: 12px;
+    .container {
+        gap: 12px;
+        padding: 12px;
+    }
 
-    padding:
-        8px 12px 12px;
+    .prefecture-panel {
+        flex-basis: 290px;
+        width: 290px;
+        min-width: 290px;
+    }
+
+    .prefecture-item {
+        font-size: 0.78rem;
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
 }
-
-.prefecture-panel {
-    flex-basis: 290px;
-
-    width: 290px;
-
-    min-width: 290px;
-}
-
-.prefecture-item {
-    font-size: 0.78rem;
-}
-
-button {
-    padding:
-        10px 16px;
-
-    font-size: 1rem;
-}
-```
-
-}
-
-/* ================================
-iPad 横向きなど高さが低い場合
-================================ */
 
 @media (max-height: 650px) {
 
-```
-.page-title {
-    height: 55px;
+    .container {
+        padding: 10px;
+        gap: 10px;
+    }
 
-    font-size: 2rem;
+    .roulette-window {
+        height: 150px;
+    }
 
-    gap: 10px;
-}
+    .prefecture {
+        height: 150px;
+        line-height: 150px;
+        font-size: 3rem;
+    }
 
-.page-title::before,
-.page-title::after {
-    width: 12px;
-    height: 12px;
-}
+    #result {
+        height: 110px;
+        margin-top: 10px;
+    }
 
-.container {
-    height: calc(100vh - 55px);
+    .buttons {
+        margin-top: 5px;
+        gap: 8px;
+    }
 
-    padding:
-        6px 10px 10px;
+    button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
 
-    gap: 10px;
-}
+    .prefecture-panel {
+        padding: 8px;
+    }
 
-.roulette-window {
-    height: 150px;
-}
+    .panel-title {
+        font-size: 1.2rem;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
 
-.prefecture {
-    height: 150px;
+    .status-area {
+        font-size: 0.72rem;
+        margin-bottom: 6px;
+        padding: 5px;
+    }
 
-    line-height: 150px;
-
-    font-size: 3rem;
-}
-
-#result {
-    height: 100px;
-
-    margin-top: 8px;
-}
-
-.buttons {
-    margin-top: 5px;
-
-    gap: 8px;
-}
-
-button {
-    padding:
-        8px 12px;
-
-    font-size: 0.9rem;
-}
-
-.prefecture-panel {
-    padding: 8px;
-}
-
-.panel-title {
-    font-size: 1.2rem;
-
-    padding-bottom: 5px;
-
-    margin-bottom: 5px;
-}
-
-.status-area {
-    font-size: 0.72rem;
-
-    margin-bottom: 6px;
-
-    padding: 5px;
-}
-
-.prefecture-item {
-    font-size: 0.72rem;
-
-    padding:
-        3px 1px;
-}
-```
-
+    .prefecture-item {
+        font-size: 0.72rem;
+        padding: 3px 1px;
+    }
 }
