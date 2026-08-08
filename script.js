@@ -59,17 +59,16 @@ function updatePrefectureList() {
 function createRouletteItems() {
     rouletteList.innerHTML = "";
 
-    const loopList = [
-        ...prefectures,
-        ...prefectures,
-        ...prefectures,
-        ...prefectures,
-        ...prefectures
-    ];
+    const loopList = [];
+
+    for (let i = 0; i < 8; i++) {
+        prefectures.forEach(function(prefecture) {
+            loopList.push(prefecture);
+        });
+    }
 
     loopList.forEach(function(prefecture) {
-        const div =
-            document.createElement("div");
+        const div = document.createElement("div");
 
         div.className = "prefecture";
         div.textContent = prefecture;
@@ -107,23 +106,30 @@ startBtn.addEventListener("click", function() {
     const winner =
         remaining[winnerIndex];
 
+    const item =
+        document.querySelector(".prefecture");
+
     const itemHeight =
-        document.querySelector(".prefecture").offsetHeight;
+        item.offsetHeight;
 
     const winnerPosition =
         prefectures.indexOf(winner);
 
+    const listLength =
+        prefectures.length;
+
     const spinLoops =
-        8 + Math.floor(Math.random() * 4);
+        5 + Math.floor(Math.random() * 3);
+
+    const targetIndex =
+        spinLoops * listLength +
+        winnerPosition;
 
     const targetPosition =
-        (
-            spinLoops * prefectures.length +
-            winnerPosition
-        ) * itemHeight;
+        targetIndex * itemHeight;
 
     const duration =
-        4000 + Math.random() * 1500;
+        4500 + Math.random() * 1500;
 
     rouletteList.style.transition = "none";
 
@@ -136,7 +142,7 @@ startBtn.addEventListener("click", function() {
         "transform " +
         duration +
         "ms " +
-        "cubic-bezier(0.08, 0.95, 0.15, 1)";
+        "cubic-bezier(0.12, 0.85, 0.18, 1)";
 
     rouletteList.style.transform =
         "translateY(-" +
