@@ -112,6 +112,7 @@ loopList.forEach(function(prefecture) {
     div.textContent = prefecture;
 
     rouletteList.appendChild(div);
+
 });
 ```
 
