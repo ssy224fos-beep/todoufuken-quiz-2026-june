@@ -41,10 +41,12 @@ function createPrefectureList() {
 }
 
 function updatePrefectureList() {
-    const items = document.querySelectorAll(".prefecture-item");
+    const items =
+        document.querySelectorAll(".prefecture-item");
 
     items.forEach(function(item) {
-        const prefecture = item.dataset.prefecture;
+        const prefecture =
+            item.dataset.prefecture;
 
         if (remaining.includes(prefecture)) {
             item.classList.remove("used");
@@ -61,11 +63,13 @@ function createRouletteItems() {
         ...prefectures,
         ...prefectures,
         ...prefectures,
+        ...prefectures,
         ...prefectures
     ];
 
     loopList.forEach(function(prefecture) {
-        const div = document.createElement("div");
+        const div =
+            document.createElement("div");
 
         div.className = "prefecture";
         div.textContent = prefecture;
@@ -80,6 +84,7 @@ updateRemaining();
 updatePrefectureList();
 
 startBtn.addEventListener("click", function() {
+
     if (spinning) {
         return;
     }
@@ -92,23 +97,24 @@ startBtn.addEventListener("click", function() {
     spinning = true;
     startBtn.disabled = true;
 
+    result.classList.remove("result-show");
+
     const winnerIndex =
-        Math.floor(Math.random() * remaining.length);
+        Math.floor(
+            Math.random() * remaining.length
+        );
 
-    const winner = remaining[winnerIndex];
+    const winner =
+        remaining[winnerIndex];
 
-    rouletteList.style.transition = "none";
-    rouletteList.style.transform = "translateY(0px)";
-
-    void rouletteList.offsetWidth;
-
-    const itemHeight = 140;
+    const itemHeight =
+        document.querySelector(".prefecture").offsetHeight;
 
     const winnerPosition =
         prefectures.indexOf(winner);
 
     const spinLoops =
-        8 + Math.floor(Math.random() * 5);
+        8 + Math.floor(Math.random() * 4);
 
     const targetPosition =
         (
@@ -117,7 +123,14 @@ startBtn.addEventListener("click", function() {
         ) * itemHeight;
 
     const duration =
-        3500 + Math.random() * 1500;
+        4000 + Math.random() * 1500;
+
+    rouletteList.style.transition = "none";
+
+    rouletteList.style.transform =
+        "translateY(0px)";
+
+    void rouletteList.offsetWidth;
 
     rouletteList.style.transition =
         "transform " +
@@ -131,19 +144,31 @@ startBtn.addEventListener("click", function() {
         "px)";
 
     setTimeout(function() {
+
         result.textContent = winner;
 
-        remaining.splice(winnerIndex, 1);
+        result.classList.remove("result-show");
+
+        void result.offsetWidth;
+
+        result.classList.add("result-show");
+
+        remaining.splice(
+            winnerIndex,
+            1
+        );
 
         updateRemaining();
         updatePrefectureList();
 
         spinning = false;
         startBtn.disabled = false;
+
     }, duration + 100);
 });
 
 resetBtn.addEventListener("click", function() {
+
     if (!confirm("本当にリセットしますか？")) {
         return;
     }
@@ -155,13 +180,19 @@ resetBtn.addEventListener("click", function() {
 
     result.textContent = "START";
 
+    result.classList.remove("result-show");
+
     rouletteList.style.transition = "none";
-    rouletteList.style.transform = "translateY(0px)";
+
+    rouletteList.style.transform =
+        "translateY(0px)";
 
     spinning = false;
     startBtn.disabled = false;
 });
 
 mapBtn.addEventListener("click", function() {
+
     alert("日本地図機能は今後追加予定です。");
+
 });
