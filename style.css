@@ -23,9 +23,62 @@ body {
     overflow: hidden;
 }
 
+.page-title {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    color: #fff;
+
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.page-title::before,
+.page-title::after {
+    content: "Åö";
+
+    color: #ffd84d;
+
+    font-size: 1.4rem;
+
+    text-shadow:
+        0 0 5px rgba(255, 216, 77, 0.4);
+}
+
+.page-title span {
+    color: #fff;
+
+    text-shadow:
+        2px 2px 0 #2455a4;
+}
+
+.page-title strong {
+    color: #ffcf33;
+
+    font-size: 1.15em;
+
+    font-style: italic;
+
+    text-shadow:
+        2px 2px 0 #e04a3a,
+        4px 4px 0 #244f91;
+
+    letter-spacing: 0.03em;
+}
+
 .container {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 75px);
 
     display: flex;
     flex-direction: row;
@@ -34,7 +87,7 @@ body {
     align-items: stretch;
 
     gap: 20px;
-    padding: 20px;
+    padding: 10px 20px 20px;
 
     background: #000;
 
@@ -403,7 +456,7 @@ button:disabled {
 
     .container {
         gap: 12px;
-        padding: 12px;
+        padding: 8px 12px 12px;
     }
 
     .prefecture-panel {
@@ -424,8 +477,20 @@ button:disabled {
 
 @media (max-height: 650px) {
 
+    .page-title {
+        height: 55px;
+        font-size: 2rem;
+        gap: 10px;
+    }
+
+    .page-title::before,
+    .page-title::after {
+        font-size: 1rem;
+    }
+
     .container {
-        padding: 10px;
+        height: calc(100vh - 55px);
+        padding: 6px 10px 10px;
         gap: 10px;
     }
 
@@ -440,8 +505,8 @@ button:disabled {
     }
 
     #result {
-        height: 110px;
-        margin-top: 10px;
+        height: 100px;
+        margin-top: 8px;
     }
 
     .buttons {
