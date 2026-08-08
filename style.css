@@ -1,624 +1,369 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
-
-/* ========================================
-ページ全体
-======================================== */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body {
-width: 100%;
-height: 100%;
-
-```
-background: #000;
-
-color: #fff;
-
-font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
-```
-
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
 }
 
 body {
-overflow: hidden;
+    overflow: hidden;
 }
-
-/* ========================================
-全体レイアウト
-======================================== */
 
 .container {
+    width: 100vw;
+    height: 100vh;
 
-```
-width: 100vw;
-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
-display: flex;
+    align-items: stretch;
 
-flex-direction: row;
+    gap: 20px;
+    padding: 20px;
 
-flex-wrap: nowrap;
+    background: #000;
 
-align-items: stretch;
-
-gap: 20px;
-
-padding: 20px;
-
-background: #000;
-
-overflow: hidden;
-```
-
+    overflow: hidden;
 }
-
-/* ========================================
-左側ルーレット
-======================================== */
 
 .roulette-area {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
 
-```
-flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-min-width: 0;
-
-height: 100%;
-
-display: flex;
-
-flex-direction: column;
-
-align-items: center;
-
-justify-content: flex-start;
-
-background: #000;
-```
-
+    background: #000;
 }
-
-/* ========================================
-残り県数
-======================================== */
 
 #remaining {
+    width: 100%;
 
-```
-width: 100%;
+    text-align: center;
 
-text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
 
-font-size: 2rem;
+    color: #fff;
 
-font-weight: bold;
-
-color: #fff;
-
-margin-bottom: 15px;
-```
-
+    margin-bottom: 15px;
 }
-
-/* ========================================
-ルーレット窓
-======================================== */
 
 .roulette-window {
+    width: min(520px, 90%);
+    height: 140px;
 
-```
-width: min(520px, 90%);
+    overflow: hidden;
 
-height: 140px;
+    position: relative;
 
-overflow: hidden;
+    background:
+        linear-gradient(
+            180deg,
+            #050505,
+            #303030,
+            #050505
+        );
 
-position: relative;
+    border: 5px solid gold;
+    border-radius: 20px;
 
-background:
-    linear-gradient(
-        180deg,
-        #050505,
-        #303030,
-        #050505
-    );
-
-border: 5px solid gold;
-
-border-radius: 20px;
-
-box-shadow:
-    0 0 20px
-    rgba(255,215,0,0.5);
-```
-
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.5);
 }
-
-/* ========================================
-ルーレットリスト
-======================================== */
 
 #roulette-list {
+    position: absolute;
 
-```
-position: absolute;
+    top: 0;
+    left: 0;
 
-top: 0;
-left: 0;
-
-width: 100%;
-```
-
+    width: 100%;
 }
-
-/* ========================================
-1県
-======================================== */
 
 .prefecture {
+    width: 100%;
+    height: 140px;
 
-```
-width: 100%;
+    line-height: 140px;
 
-height: 140px;
+    text-align: center;
 
-line-height: 140px;
+    font-size: 3rem;
+    font-weight: bold;
 
-text-align: center;
+    color: #fff;
 
-font-size: 3rem;
-
-font-weight: bold;
-
-color: #fff;
-
-text-shadow:
-    0 0 10px
-    rgba(255,255,255,0.4);
-```
-
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.4);
 }
-
-/* ========================================
-結果
-======================================== */
 
 #result {
+    width: 100%;
+    height: 180px;
 
-```
-width: 100%;
+    margin-top: 20px;
 
-height: 180px;
+    display: flex;
 
-margin-top: 20px;
+    align-items: center;
+    justify-content: center;
 
-display: flex;
+    text-align: center;
 
-align-items: center;
+    font-size: clamp(4rem, 8vw, 8rem);
 
-justify-content: center;
+    font-weight: bold;
 
-text-align: center;
+    color: gold;
 
-font-size:
-    clamp(4rem, 8vw, 8rem);
-
-font-weight: bold;
-
-color: gold;
-
-text-shadow:
-    0 0 15px
-    rgba(255,215,0,0.7);
-```
-
+    text-shadow:
+        0 0 15px rgba(255, 215, 0, 0.7);
 }
 
-/* ========================================
-結果アニメーション
-======================================== */
-
 .result-show {
-
-```
-animation:
-    resultZoom 0.6s ease;
-```
-
+    animation: resultZoom 0.6s ease;
 }
 
 @keyframes resultZoom {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
 
-```
-0% {
-    transform: scale(0.5);
-    opacity: 0;
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
-
-60% {
-    transform: scale(1.2);
-    opacity: 1;
-}
-
-100% {
-    transform: scale(1);
-    opacity: 1;
-}
-```
-
-}
-
-/* ========================================
-ボタン
-======================================== */
 
 .buttons {
+    display: flex;
 
-```
-display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
-flex-direction: row;
-
-flex-wrap: nowrap;
-
-justify-content: center;
-
-align-items: center;
-
-gap: 12px;
-
-margin-top: 10px;
-```
-
-}
-
-button {
-
-```
-border: none;
-
-border-radius: 12px;
-
-padding:
-    12px
-    24px;
-
-font-size: 1.2rem;
-
-font-weight: bold;
-
-color: #fff;
-
-cursor: pointer;
-```
-
-}
-
-button:active {
-
-```
-transform: scale(0.95);
-```
-
-}
-
-button:disabled {
-
-```
-opacity: 0.5;
-
-cursor: default;
-```
-
-}
-
-/* ========================================
-スタート
-======================================== */
-
-#startBtn {
-
-```
-background: #28a745;
-
-color: #fff;
-
-box-shadow:
-    0 0 12px
-    rgba(40,167,69,0.5);
-```
-
-}
-
-/* ========================================
-リセット
-======================================== */
-
-#resetBtn {
-
-```
-background: #dc3545;
-
-color: #fff;
-
-box-shadow:
-    0 0 12px
-    rgba(220,53,69,0.4);
-```
-
-}
-
-/* ========================================
-地図
-======================================== */
-
-#mapBtn {
-
-```
-background: #007bff;
-
-color: #fff;
-
-box-shadow:
-    0 0 12px
-    rgba(0,123,255,0.4);
-```
-
-}
-
-/* ========================================
-右側 都道府県一覧
-======================================== */
-
-.prefecture-panel {
-
-```
-flex: 0 0 330px;
-
-width: 330px;
-
-min-width: 330px;
-
-height: 100%;
-
-padding: 15px;
-
-background:
-    linear-gradient(
-        180deg,
-        #181818,
-        #080808
-    );
-
-border:
-    2px solid #444;
-
-border-radius: 15px;
-
-overflow: hidden;
-
-position: relative;
-```
-
-}
-
-/* ========================================
-タイトル
-======================================== */
-
-.panel-title {
-
-```
-text-align: center;
-
-font-size: 1.5rem;
-
-font-weight: bold;
-
-color: gold;
-
-padding-bottom: 10px;
-
-margin-bottom: 10px;
-
-border-bottom:
-    1px solid #555;
-```
-
-}
-
-/* ========================================
-都道府県一覧
-======================================== */
-
-.prefecture-list {
-
-```
-width: 100%;
-
-display: grid;
-
-grid-template-columns:
-    repeat(3, 1fr);
-
-gap: 5px;
-
-align-content: start;
-```
-
-}
-
-/* ========================================
-都道府県
-======================================== */
-
-.prefecture-item {
-
-```
-padding:
-    6px
-    2px;
-
-text-align: center;
-
-font-size: 0.9rem;
-
-white-space: nowrap;
-
-color: #fff;
-
-background:
-    rgba(255,255,255,0.06);
-
-border-radius: 5px;
-```
-
-}
-
-/* ========================================
-抽選済み
-======================================== */
-
-.prefecture-item.used {
-
-```
-color: #666;
-
-background:
-    rgba(80,80,80,0.15);
-
-text-decoration:
-    line-through;
-
-opacity: 0.55;
-```
-
-}
-
-/* ========================================
-iPad横向き
-======================================== */
-
-@media (max-width: 1100px) {
-
-```
-.container {
+    justify-content: center;
+    align-items: center;
 
     gap: 12px;
-
-    padding: 12px;
-}
-
-
-.prefecture-panel {
-
-    flex-basis: 290px;
-
-    width: 290px;
-
-    min-width: 290px;
-}
-
-
-.prefecture-item {
-
-    font-size: 0.78rem;
-}
-
-
-button {
-
-    padding:
-        10px
-        16px;
-
-    font-size: 1rem;
-}
-```
-
-}
-
-/* ========================================
-高さが低い場合
-======================================== */
-
-@media (max-height: 650px) {
-
-```
-.container {
-
-    padding: 10px;
-
-    gap: 10px;
-}
-
-
-#remaining {
-
-    font-size: 1.4rem;
-
-    margin-bottom: 5px;
-}
-
-
-#result {
-
-    height: 120px;
 
     margin-top: 10px;
 }
 
-
-.buttons {
-
-    margin-top: 5px;
-
-    gap: 8px;
-}
-
-
 button {
+    border: none;
 
-    padding:
-        8px
-        12px;
+    border-radius: 12px;
 
-    font-size: 0.9rem;
-}
-
-
-.prefecture-panel {
-
-    padding: 8px;
-}
-
-
-.panel-title {
+    padding: 12px 24px;
 
     font-size: 1.2rem;
+    font-weight: bold;
 
-    padding-bottom: 5px;
+    color: #fff;
 
-    margin-bottom: 5px;
+    cursor: pointer;
 }
 
+button:active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+#startBtn {
+    background: #28a745;
+    color: #fff;
+
+    box-shadow:
+        0 0 12px rgba(40, 167, 69, 0.5);
+}
+
+#resetBtn {
+    background: #dc3545;
+    color: #fff;
+
+    box-shadow:
+        0 0 12px rgba(220, 53, 69, 0.4);
+}
+
+#mapBtn {
+    background: #007bff;
+    color: #fff;
+
+    box-shadow:
+        0 0 12px rgba(0, 123, 255, 0.4);
+}
+
+.prefecture-panel {
+    flex: 0 0 330px;
+
+    width: 330px;
+    min-width: 330px;
+
+    height: 100%;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #181818,
+            #080808
+        );
+
+    border: 2px solid #444;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.panel-title {
+    text-align: center;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    color: gold;
+
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    border-bottom: 1px solid #555;
+}
+
+.prefecture-list {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 5px;
+
+    align-content: start;
+}
 
 .prefecture-item {
+    padding: 6px 2px;
 
-    font-size: 0.72rem;
+    text-align: center;
 
-    padding: 3px 1px;
+    font-size: 0.9rem;
+
+    white-space: nowrap;
+
+    color: #fff;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 5px;
 }
-```
 
+.prefecture-item.used {
+    color: #666;
+
+    background:
+        rgba(80, 80, 80, 0.15);
+
+    text-decoration: line-through;
+
+    opacity: 0.55;
+}
+
+@media (max-width: 1100px) {
+
+    .container {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .prefecture-panel {
+        flex-basis: 290px;
+        width: 290px;
+        min-width: 290px;
+    }
+
+    .prefecture-item {
+        font-size: 0.78rem;
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-height: 650px) {
+
+    .container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    #remaining {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    #result {
+        height: 120px;
+        margin-top: 10px;
+    }
+
+    .buttons {
+        margin-top: 5px;
+        gap: 8px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .prefecture-panel {
+        padding: 8px;
+    }
+
+    .panel-title {
+        font-size: 1.2rem;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+
+    .prefecture-item {
+        font-size: 0.72rem;
+        padding: 3px 1px;
+    }
 }
