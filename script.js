@@ -11,92 +11,65 @@ const prefectures = [
 ];
 
 let remaining = [...prefectures];
-
 let spinning = false;
 
-/* ========================================
+/* ================================
 HTML要素
-======================================== */
+================================ */
 
-const rouletteList =
-document.getElementById("roulette-list");
+const rouletteList = document.getElementById("roulette-list");
+const result = document.getElementById("result");
+const remainingLabel = document.getElementById("remaining");
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+const mapBtn = document.getElementById("mapBtn");
+const prefectureList = document.getElementById("prefectureList");
 
-const result =
-document.getElementById("result");
-
-const remainingLabel =
-document.getElementById("remaining");
-
-const startBtn =
-document.getElementById("startBtn");
-
-const resetBtn =
-document.getElementById("resetBtn");
-
-const mapBtn =
-document.getElementById("mapBtn");
-
-const prefectureList =
-document.getElementById("prefectureList");
-
-/* ========================================
-残り県数
-======================================== */
+/* ================================
+残り都道府県数
+================================ */
 
 function updateRemaining() {
-
-```
 remainingLabel.textContent =
-    "残り：" +
-    remaining.length +
-    "都道府県";
-```
-
+"残り：" + remaining.length + "都道府県";
 }
 
-/* ========================================
-右側一覧作成
-======================================== */
+/* ================================
+右側の都道府県一覧
+================================ */
 
 function createPrefectureList() {
 
 ```
 prefectureList.innerHTML = "";
 
-prefectures.forEach(prefecture => {
+prefectures.forEach(function(prefecture) {
 
-    const item =
-        document.createElement("div");
+    const item = document.createElement("div");
 
-    item.className =
-        "prefecture-item";
+    item.className = "prefecture-item";
 
-    item.textContent =
-        prefecture;
+    item.textContent = prefecture;
 
-    item.dataset.prefecture =
-        prefecture;
+    item.dataset.prefecture = prefecture;
 
     prefectureList.appendChild(item);
-
 });
 ```
 
 }
 
-/* ========================================
-右側一覧更新
-======================================== */
+/* ================================
+抽選済み表示
+================================ */
 
 function updatePrefectureList() {
 
 ```
 const items =
-    document.querySelectorAll(
-        ".prefecture-item"
-    );
+    document.querySelectorAll(".prefecture-item");
 
-items.forEach(item => {
+items.forEach(function(item) {
 
     const prefecture =
         item.dataset.prefecture;
@@ -108,17 +81,15 @@ items.forEach(item => {
     } else {
 
         item.classList.add("used");
-
     }
-
 });
 ```
 
 }
 
-/* ========================================
-ルーレット作成
-======================================== */
+/* ================================
+ルーレット項目作成
+================================ */
 
 function createRouletteItems() {
 
@@ -128,30 +99,27 @@ rouletteList.innerHTML = "";
 const loopList = [
     ...prefectures,
     ...prefectures,
+    ...prefectures,
     ...prefectures
 ];
 
-loopList.forEach(prefecture => {
+loopList.forEach(function(prefecture) {
 
-    const div =
-        document.createElement("div");
+    const div = document.createElement("div");
 
-    div.className =
-        "prefecture";
+    div.className = "prefecture";
 
-    div.textContent =
-        prefecture;
+    div.textContent = prefecture;
 
     rouletteList.appendChild(div);
-
 });
 ```
 
 }
 
-/* ========================================
-初期化
-======================================== */
+/* ================================
+初期表示
+================================ */
 
 createRouletteItems();
 
@@ -161,245 +129,171 @@ updateRemaining();
 
 updatePrefectureList();
 
-/* ========================================
+/* ================================
 スタート
-======================================== */
+================================ */
 
-startBtn.addEventListener(
-"click",
-() => {
+startBtn.addEventListener("click", function() {
 
 ```
-    if (spinning) {
-        return;
-    }
+if (spinning) {
+    return;
+}
+
+if (remaining.length === 0) {
+
+    result.textContent = "抽選終了！";
+
+    return;
+}
+
+spinning = true;
+
+startBtn.disabled = true;
 
 
-    if (remaining.length === 0) {
+/* 当選する都道府県を決定 */
 
-        result.textContent =
-            "抽選終了！";
-
-        return;
-    }
-
-
-    spinning = true;
-
-    startBtn.disabled = true;
-
-
-    /* --------------------------------
-       当選県を決定
-    -------------------------------- */
-
-    const winnerIndex =
-        Math.floor(
-            Math.random() *
-            remaining.length
-        );
-
-    const winner =
-        remaining[winnerIndex];
-
-
-    result.textContent = "";
-
-
-    /* --------------------------------
-       ルーレットを初期位置へ
-    -------------------------------- */
-
-    rouletteList.style.transition =
-        "none";
-
-    rouletteList.style.transform =
-        "translateY(0px)";
-
-
-    void rouletteList.offsetWidth;
-
-
-    /* --------------------------------
-       ルーレット位置
-    -------------------------------- */
-
-    const itemHeight = 140;
-
-    const winnerPosition =
-        prefectures.indexOf(
-            winner
-        );
-
-
-    const spinLoops =
-        8 +
-        Math.floor(
-            Math.random() * 5
-        );
-
-
-    const targetPosition =
-        (
-            spinLoops *
-            prefectures.length
-            +
-            winnerPosition
-        ) *
-        itemHeight;
-
-
-    /* --------------------------------
-       回転時間
-    -------------------------------- */
-
-    const duration =
-        3000 +
-        Math.random() * 2000;
-
-
-    /* --------------------------------
-       アニメーション
-    -------------------------------- */
-
-    rouletteList.style.transition =
-        "transform " +
-        duration +
-        "ms " +
-        "cubic-bezier(0.08,0.95,0.15,1)";
-
-
-    rouletteList.style.transform =
-        "translateY(-" +
-        targetPosition +
-        "px)";
-
-
-    /* --------------------------------
-       抽選終了
-    -------------------------------- */
-
-    setTimeout(
-        () => {
-
-            result.textContent =
-                winner;
-
-
-            /*
-             * 結果アニメーション
-             */
-
-            result.classList.remove(
-                "result-show"
-            );
-
-            void result.offsetWidth;
-
-            result.classList.add(
-                "result-show"
-            );
-
-
-            /*
-             * 当選県を削除
-             */
-
-            remaining.splice(
-                winnerIndex,
-                1
-            );
-
-
-            updateRemaining();
-
-            updatePrefectureList();
-
-
-            spinning = false;
-
-            startBtn.disabled = false;
-
-        },
-        duration + 50
+const winnerIndex =
+    Math.floor(
+        Math.random() * remaining.length
     );
 
-}
-```
-
-);
-
-/* ========================================
-リセット
-======================================== */
-
-resetBtn.addEventListener(
-"click",
-() => {
-
-```
-    if (
-        !confirm(
-            "本当にリセットしますか？"
-        )
-    ) {
-        return;
-    }
+const winner =
+    remaining[winnerIndex];
 
 
-    remaining =
-        [...prefectures];
+/* ルーレットを初期位置へ */
 
+rouletteList.style.transition = "none";
+
+rouletteList.style.transform =
+    "translateY(0px)";
+
+
+/* ブラウザに初期状態を反映させる */
+
+void rouletteList.offsetWidth;
+
+
+/* 1県あたりの高さ */
+
+const itemHeight = 140;
+
+
+/* 当選県の位置 */
+
+const winnerPosition =
+    prefectures.indexOf(winner);
+
+
+/* 何周するか */
+
+const spinLoops =
+    8 + Math.floor(Math.random() * 5);
+
+
+/* 最終位置 */
+
+const targetPosition =
+    (
+        spinLoops * prefectures.length
+        + winnerPosition
+    ) * itemHeight;
+
+
+/* 回転時間 */
+
+const duration =
+    3500 + Math.random() * 1500;
+
+
+/* ルーレット開始 */
+
+rouletteList.style.transition =
+    "transform " +
+    duration +
+    "ms " +
+    "cubic-bezier(0.08, 0.95, 0.15, 1)";
+
+rouletteList.style.transform =
+    "translateY(-" +
+    targetPosition +
+    "px)";
+
+
+/* 回転終了 */
+
+setTimeout(function() {
+
+    result.textContent = winner;
+
+
+    /* 当選県をremainingから削除 */
+
+    remaining.splice(winnerIndex, 1);
+
+
+    /* 表示更新 */
 
     updateRemaining();
 
     updatePrefectureList();
 
 
-    result.textContent =
-        "START";
-
-
-    result.classList.remove(
-        "result-show"
-    );
-
-
-    rouletteList.style.transition =
-        "none";
-
-    rouletteList.style.transform =
-        "translateY(0px)";
-
-
     spinning = false;
 
     startBtn.disabled = false;
 
+}, duration + 100);
+```
+
+});
+
+/* ================================
+リセット
+================================ */
+
+resetBtn.addEventListener("click", function() {
+
+```
+if (!confirm("本当にリセットしますか？")) {
+    return;
 }
+
+remaining = [...prefectures];
+
+updateRemaining();
+
+updatePrefectureList();
+
+result.textContent = "START";
+
+rouletteList.style.transition = "none";
+
+rouletteList.style.transform =
+    "translateY(0px)";
+
+spinning = false;
+
+startBtn.disabled = false;
 ```
 
-);
+});
 
-/* ========================================
-地図ボタン
-======================================== */
+/* ================================
+地図表示ボタン
+================================ */
 
-mapBtn.addEventListener(
-"click",
-() => {
+mapBtn.addEventListener("click", function() {
 
 ```
-    /*
-     * 現在は地図未実装。
-     * 第4弾で日本地図を追加する予定。
-     */
+/*
+ * 日本地図は現在未実装。
+ * 第4弾で実装予定。
+ */
 
-    alert(
-        "日本地図機能は今後追加予定です。"
-    );
-
-}
+alert("日本地図機能は今後追加予定です。");
 ```
 
-);
+});
