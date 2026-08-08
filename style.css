@@ -5,21 +5,18 @@
   }
 
 /* ========================================
-基本
+ページ全体
 ======================================== */
 
 html,
 body {
 width: 100%;
 height: 100%;
-}
-
-body {
 
 ```
 background: #000;
 
-color: white;
+color: #fff;
 
 font-family:
     -apple-system,
@@ -28,14 +25,16 @@ font-family:
     "Yu Gothic",
     "Meiryo",
     sans-serif;
-
-overflow: hidden;
 ```
 
 }
 
+body {
+overflow: hidden;
+}
+
 /* ========================================
-全体
+全体レイアウト
 ======================================== */
 
 .container {
@@ -50,9 +49,13 @@ flex-direction: row;
 
 flex-wrap: nowrap;
 
+align-items: stretch;
+
 gap: 20px;
 
 padding: 20px;
+
+background: #000;
 
 overflow: hidden;
 ```
@@ -60,10 +63,10 @@ overflow: hidden;
 }
 
 /* ========================================
-左側ルーレットエリア
+左側ルーレット
 ======================================== */
 
-.main-area {
+.roulette-area {
 
 ```
 flex: 1 1 auto;
@@ -79,15 +82,17 @@ flex-direction: column;
 align-items: center;
 
 justify-content: flex-start;
+
+background: #000;
 ```
 
 }
 
 /* ========================================
-残り表示
+残り県数
 ======================================== */
 
-.header {
+#remaining {
 
 ```
 width: 100%;
@@ -98,28 +103,16 @@ font-size: 2rem;
 
 font-weight: bold;
 
+color: #fff;
+
 margin-bottom: 15px;
 ```
 
 }
 
 /* ========================================
-ルーレット
+ルーレット窓
 ======================================== */
-
-.roulette-container {
-
-```
-width: 100%;
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-```
-
-}
 
 .roulette-window {
 
@@ -135,9 +128,9 @@ position: relative;
 background:
     linear-gradient(
         180deg,
-        #050505 0%,
-        #252525 50%,
-        #050505 100%
+        #050505,
+        #303030,
+        #050505
     );
 
 border: 5px solid gold;
@@ -145,14 +138,14 @@ border: 5px solid gold;
 border-radius: 20px;
 
 box-shadow:
-    0 0 20px rgba(255, 215, 0, 0.5),
-    inset 0 0 30px rgba(255, 255, 255, 0.08);
+    0 0 20px
+    rgba(255,215,0,0.5);
 ```
 
 }
 
 /* ========================================
-ルーレット文字
+ルーレットリスト
 ======================================== */
 
 #roulette-list {
@@ -160,13 +153,17 @@ box-shadow:
 ```
 position: absolute;
 
-width: 100%;
-
 top: 0;
 left: 0;
+
+width: 100%;
 ```
 
 }
+
+/* ========================================
+1県
+======================================== */
 
 .prefecture {
 
@@ -183,10 +180,11 @@ font-size: 3rem;
 
 font-weight: bold;
 
-color: white;
+color: #fff;
 
 text-shadow:
-    0 0 10px rgba(255,255,255,0.4);
+    0 0 10px
+    rgba(255,255,255,0.4);
 ```
 
 }
@@ -195,7 +193,7 @@ text-shadow:
 結果
 ======================================== */
 
-.result {
+#result {
 
 ```
 width: 100%;
@@ -206,9 +204,9 @@ margin-top: 20px;
 
 display: flex;
 
-justify-content: center;
-
 align-items: center;
+
+justify-content: center;
 
 text-align: center;
 
@@ -220,13 +218,17 @@ font-weight: bold;
 color: gold;
 
 text-shadow:
-    0 0 15px rgba(255,215,0,0.7),
-    0 0 30px rgba(255,215,0,0.4);
+    0 0 15px
+    rgba(255,215,0,0.7);
 ```
 
 }
 
-.result.show {
+/* ========================================
+結果アニメーション
+======================================== */
+
+.result-show {
 
 ```
 animation:
@@ -263,11 +265,11 @@ animation:
 .buttons {
 
 ```
-margin-top: 10px;
-
 display: flex;
 
 flex-direction: row;
+
+flex-wrap: nowrap;
 
 justify-content: center;
 
@@ -275,7 +277,7 @@ align-items: center;
 
 gap: 12px;
 
-flex-wrap: nowrap;
+margin-top: 10px;
 ```
 
 }
@@ -295,13 +297,9 @@ font-size: 1.2rem;
 
 font-weight: bold;
 
-color: white;
+color: #fff;
 
 cursor: pointer;
-
-transition:
-    transform 0.15s,
-    filter 0.15s;
 ```
 
 }
@@ -324,65 +322,62 @@ cursor: default;
 
 }
 
-/* スタート：緑 */
+/* ========================================
+スタート
+======================================== */
 
 #startBtn {
 
 ```
-background:
-    linear-gradient(
-        180deg,
-        #35c759,
-        #168a35
-    );
+background: #28a745;
+
+color: #fff;
 
 box-shadow:
     0 0 12px
-    rgba(40, 200, 80, 0.5);
-```
-
-}
-
-/* リセット：赤 */
-
-#resetBtn {
-
-```
-background:
-    linear-gradient(
-        180deg,
-        #ff4b5c,
-        #b82030
-    );
-
-box-shadow:
-    0 0 12px
-    rgba(255, 50, 70, 0.4);
-```
-
-}
-
-/* 地図：青 */
-
-#mapBtn {
-
-```
-background:
-    linear-gradient(
-        180deg,
-        #2495ff,
-        #075bb5
-    );
-
-box-shadow:
-    0 0 12px
-    rgba(30, 140, 255, 0.5);
+    rgba(40,167,69,0.5);
 ```
 
 }
 
 /* ========================================
-右側 都道府県パネル
+リセット
+======================================== */
+
+#resetBtn {
+
+```
+background: #dc3545;
+
+color: #fff;
+
+box-shadow:
+    0 0 12px
+    rgba(220,53,69,0.4);
+```
+
+}
+
+/* ========================================
+地図
+======================================== */
+
+#mapBtn {
+
+```
+background: #007bff;
+
+color: #fff;
+
+box-shadow:
+    0 0 12px
+    rgba(0,123,255,0.4);
+```
+
+}
+
+/* ========================================
+右側 都道府県一覧
 ======================================== */
 
 .prefecture-panel {
@@ -392,9 +387,9 @@ flex: 0 0 330px;
 
 width: 330px;
 
-height: 100%;
-
 min-width: 330px;
+
+height: 100%;
 
 padding: 15px;
 
@@ -412,15 +407,13 @@ border-radius: 15px;
 
 overflow: hidden;
 
-box-shadow:
-    inset 0 0 20px
-    rgba(255,255,255,0.03);
+position: relative;
 ```
 
 }
 
 /* ========================================
-パネルタイトル
+タイトル
 ======================================== */
 
 .panel-title {
@@ -466,7 +459,7 @@ align-content: start;
 }
 
 /* ========================================
-各都道府県
+都道府県
 ======================================== */
 
 .prefecture-item {
@@ -482,17 +475,12 @@ font-size: 0.9rem;
 
 white-space: nowrap;
 
-color: white;
+color: #fff;
 
 background:
     rgba(255,255,255,0.06);
 
 border-radius: 5px;
-
-transition:
-    color 0.3s,
-    background 0.3s,
-    opacity 0.3s;
 ```
 
 }
@@ -518,7 +506,7 @@ opacity: 0.55;
 }
 
 /* ========================================
-iPad横向き用
+iPad横向き
 ======================================== */
 
 @media (max-width: 1100px) {
@@ -539,18 +527,12 @@ iPad横向き用
     width: 290px;
 
     min-width: 290px;
-
-    padding: 10px;
 }
 
 
 .prefecture-item {
 
     font-size: 0.78rem;
-
-    padding:
-        5px
-        1px;
 }
 
 
@@ -567,7 +549,7 @@ button {
 }
 
 /* ========================================
-iPadの横画面で高さが低い場合
+高さが低い場合
 ======================================== */
 
 @media (max-height: 650px) {
@@ -581,7 +563,7 @@ iPadの横画面で高さが低い場合
 }
 
 
-.header {
+#remaining {
 
     font-size: 1.4rem;
 
@@ -589,7 +571,7 @@ iPadの横画面で高さが低い場合
 }
 
 
-.result {
+#result {
 
     height: 120px;
 

@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
 
 ```
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>47都道府県ルーレット</title>
 
 <link rel="stylesheet" href="style.css">
@@ -20,32 +21,23 @@
 <div class="container">
 
 ```
-<!-- ================================
-     左側：ルーレット
-================================= -->
+<!-- 左側：ルーレット -->
 
-<main class="main-area">
+<div class="roulette-area">
 
-    <div class="header">
-        <div id="remaining">残り：47都道府県</div>
+    <div id="remaining">
+        残り：47都道府県
     </div>
 
+    <div class="roulette-window">
 
-    <div class="roulette-container">
-
-        <div class="roulette-window">
-
-            <div id="roulette-list"></div>
-
-        </div>
+        <div id="roulette-list"></div>
 
     </div>
 
-
-    <div id="result" class="result">
+    <div id="result">
         START
     </div>
-
 
     <div class="buttons">
 
@@ -63,25 +55,22 @@
 
     </div>
 
-</main>
+</div>
 
 
-<!-- ================================
-     右側：都道府県一覧
-================================= -->
+<!-- 右側：都道府県一覧 -->
 
-<aside class="prefecture-panel">
+<div class="prefecture-panel">
 
     <div class="panel-title">
         都道府県
     </div>
 
-    <div
-        id="prefectureList"
-        class="prefecture-list">
+    <div id="prefectureList"
+         class="prefecture-list">
     </div>
 
-</aside>
+</div>
 ```
 
 </div>
