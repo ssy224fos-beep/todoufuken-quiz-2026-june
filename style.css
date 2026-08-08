@@ -4,6 +4,10 @@
   box-sizing: border-box;
   }
 
+/* ========================================
+基本
+======================================== */
+
 html,
 body {
 width: 100%;
@@ -11,17 +15,20 @@ height: 100%;
 }
 
 body {
-background: #000;
-color: white;
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Helvetica Neue",
-"Yu Gothic",
-"Meiryo",
-sans-serif;
 
 ```
+background: #000;
+
+color: white;
+
+font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+
 overflow: hidden;
 ```
 
@@ -32,50 +39,66 @@ overflow: hidden;
 ======================================== */
 
 .container {
+
+```
 width: 100vw;
 height: 100vh;
 
-```
 display: flex;
 
-padding: 20px;
+flex-direction: row;
+
+flex-wrap: nowrap;
+
 gap: 20px;
+
+padding: 20px;
+
+overflow: hidden;
 ```
 
 }
 
 /* ========================================
-メインエリア
+左側ルーレットエリア
 ======================================== */
 
 .main-area {
-flex: 1;
 
 ```
+flex: 1 1 auto;
+
+min-width: 0;
+
 height: 100%;
 
 display: flex;
+
 flex-direction: column;
 
 align-items: center;
+
+justify-content: flex-start;
 ```
 
 }
 
 /* ========================================
-残り県数
+残り表示
 ======================================== */
 
 .header {
-width: 100%;
 
 ```
+width: 100%;
+
 text-align: center;
 
 font-size: 2rem;
+
 font-weight: bold;
 
-margin-bottom: 10px;
+margin-bottom: 15px;
 ```
 
 }
@@ -85,24 +108,23 @@ margin-bottom: 10px;
 ======================================== */
 
 .roulette-container {
-width: 100%;
 
 ```
+width: 100%;
+
 display: flex;
+
 justify-content: center;
+
 align-items: center;
 ```
 
 }
 
-/*
-現在の第2弾では
-1県分＝140px
-*/
 .roulette-window {
 
 ```
-width: min(500px, 70vw);
+width: min(520px, 90%);
 
 height: 140px;
 
@@ -114,12 +136,11 @@ background:
     linear-gradient(
         180deg,
         #050505 0%,
-        #202020 50%,
+        #252525 50%,
         #050505 100%
     );
 
-border:
-    5px solid gold;
+border: 5px solid gold;
 
 border-radius: 20px;
 
@@ -171,34 +192,36 @@ text-shadow:
 }
 
 /* ========================================
-結果表示
+結果
 ======================================== */
 
 .result {
 
 ```
-margin-top: 25px;
+width: 100%;
 
 height: 180px;
 
-width: 100%;
+margin-top: 20px;
 
 display: flex;
 
 justify-content: center;
+
 align-items: center;
 
 text-align: center;
 
-font-size: clamp(4rem, 8vw, 8rem);
+font-size:
+    clamp(4rem, 8vw, 8rem);
 
 font-weight: bold;
 
 color: gold;
 
 text-shadow:
-    0 0 15px rgba(255,215,0,0.6),
-    0 0 30px rgba(255,215,0,0.3);
+    0 0 15px rgba(255,215,0,0.7),
+    0 0 30px rgba(255,215,0,0.4);
 ```
 
 }
@@ -244,11 +267,15 @@ margin-top: 10px;
 
 display: flex;
 
+flex-direction: row;
+
 justify-content: center;
+
+align-items: center;
 
 gap: 12px;
 
-flex-wrap: wrap;
+flex-wrap: nowrap;
 ```
 
 }
@@ -256,17 +283,19 @@ flex-wrap: wrap;
 button {
 
 ```
-font-size: 1.3rem;
-
-font-weight: bold;
-
-padding:
-    12px
-    25px;
-
 border: none;
 
 border-radius: 12px;
+
+padding:
+    12px
+    24px;
+
+font-size: 1.2rem;
+
+font-weight: bold;
+
+color: white;
 
 cursor: pointer;
 
@@ -295,62 +324,84 @@ cursor: default;
 
 }
 
+/* スタート：緑 */
+
 #startBtn {
 
 ```
-background: #28a745;
-
-color: white;
+background:
+    linear-gradient(
+        180deg,
+        #35c759,
+        #168a35
+    );
 
 box-shadow:
-    0 0 10px rgba(40,167,69,0.5);
+    0 0 12px
+    rgba(40, 200, 80, 0.5);
 ```
 
 }
+
+/* リセット：赤 */
 
 #resetBtn {
 
 ```
-background: #dc3545;
-
-color: white;
+background:
+    linear-gradient(
+        180deg,
+        #ff4b5c,
+        #b82030
+    );
 
 box-shadow:
-    0 0 10px rgba(220,53,69,0.4);
+    0 0 12px
+    rgba(255, 50, 70, 0.4);
 ```
 
 }
 
+/* 地図：青 */
+
 #mapBtn {
 
 ```
-background: #007bff;
-
-color: white;
+background:
+    linear-gradient(
+        180deg,
+        #2495ff,
+        #075bb5
+    );
 
 box-shadow:
-    0 0 10px rgba(0,123,255,0.4);
+    0 0 12px
+    rgba(30, 140, 255, 0.5);
 ```
 
 }
 
 /* ========================================
-都道府県一覧パネル
+右側 都道府県パネル
 ======================================== */
 
 .prefecture-panel {
 
 ```
-width: 340px;
+flex: 0 0 330px;
+
+width: 330px;
 
 height: 100%;
+
+min-width: 330px;
 
 padding: 15px;
 
 background:
     linear-gradient(
         180deg,
-        #151515,
+        #181818,
         #080808
     );
 
@@ -359,13 +410,18 @@ border:
 
 border-radius: 15px;
 
+overflow: hidden;
+
 box-shadow:
-    inset 0 0 20px rgba(255,255,255,0.03);
+    inset 0 0 20px
+    rgba(255,255,255,0.03);
 ```
 
 }
 
-/* タイトル */
+/* ========================================
+パネルタイトル
+======================================== */
 
 .panel-title {
 
@@ -378,7 +434,7 @@ font-weight: bold;
 
 color: gold;
 
-padding-bottom: 12px;
+padding-bottom: 10px;
 
 margin-bottom: 10px;
 
@@ -395,35 +451,41 @@ border-bottom:
 .prefecture-list {
 
 ```
+width: 100%;
+
 display: grid;
 
 grid-template-columns:
     repeat(3, 1fr);
 
-gap: 6px;
+gap: 5px;
 
 align-content: start;
 ```
 
 }
 
-/* 各都道府県 */
+/* ========================================
+各都道府県
+======================================== */
 
 .prefecture-item {
 
 ```
 padding:
-    7px
-    3px;
+    6px
+    2px;
 
 text-align: center;
 
-font-size: 0.95rem;
+font-size: 0.9rem;
+
+white-space: nowrap;
 
 color: white;
 
 background:
-    rgba(255,255,255,0.05);
+    rgba(255,255,255,0.06);
 
 border-radius: 5px;
 
@@ -435,7 +497,9 @@ transition:
 
 }
 
-/* 抽選済み */
+/* ========================================
+抽選済み
+======================================== */
 
 .prefecture-item.used {
 
@@ -454,96 +518,124 @@ opacity: 0.55;
 }
 
 /* ========================================
-地図エリア
-======================================== */
-
-.map-area {
-
-```
-margin-top: 15px;
-
-width: 90%;
-
-height: 180px;
-
-border:
-    2px solid white;
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-color: #aaa;
-```
-
-}
-
-.hidden {
-
-```
-display: none;
-```
-
-}
-
-/* ========================================
-iPad横向き対応
+iPad横向き用
 ======================================== */
 
 @media (max-width: 1100px) {
 
 ```
 .container {
+
     gap: 12px;
+
     padding: 12px;
 }
 
+
 .prefecture-panel {
-    width: 300px;
+
+    flex-basis: 290px;
+
+    width: 290px;
+
+    min-width: 290px;
+
+    padding: 10px;
 }
+
 
 .prefecture-item {
-    font-size: 0.85rem;
-    padding: 6px 2px;
+
+    font-size: 0.78rem;
+
+    padding:
+        5px
+        1px;
 }
 
+
 button {
-    font-size: 1.1rem;
-    padding: 10px 18px;
+
+    padding:
+        10px
+        16px;
+
+    font-size: 1rem;
 }
 ```
 
 }
 
 /* ========================================
-画面がかなり小さい場合
+iPadの横画面で高さが低い場合
 ======================================== */
 
 @media (max-height: 650px) {
 
 ```
 .container {
+
     padding: 10px;
+
+    gap: 10px;
 }
+
 
 .header {
-    font-size: 1.5rem;
+
+    font-size: 1.4rem;
+
+    margin-bottom: 5px;
 }
 
+
 .result {
-    height: 130px;
+
+    height: 120px;
+
     margin-top: 10px;
 }
 
-button {
-    padding: 8px 15px;
+
+.buttons {
+
+    margin-top: 5px;
+
+    gap: 8px;
 }
 
+
+button {
+
+    padding:
+        8px
+        12px;
+
+    font-size: 0.9rem;
+}
+
+
+.prefecture-panel {
+
+    padding: 8px;
+}
+
+
+.panel-title {
+
+    font-size: 1.2rem;
+
+    padding-bottom: 5px;
+
+    margin-bottom: 5px;
+}
+
+
 .prefecture-item {
-    padding: 4px 2px;
-    font-size: 0.8rem;
+
+    font-size: 0.72rem;
+
+    padding: 3px 1px;
 }
 ```
 
