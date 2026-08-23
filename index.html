@@ -1,57 +1,114 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>47都道府県ルーレット</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>スタンプラリーマップ</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="container">
-
-    <div class="roulette-area">
-
-        <div class="roulette-window">
-            <div id="roulette-list"></div>
-        </div>
-
-        <div id="result">
-            START
-        </div>
-
-        <div class="buttons">
-            <button id="startBtn">スタート</button>
-            <button id="resetBtn">リセット</button>
-            <button id="mapBtn">地図表示 ON/OFF</button>
-        </div>
-
+  <header class="app-header">
+    <div>
+      <div class="title-row">
+        <h1>スタンプラリーマップ</h1>
+        <span class="app-version">v8.18</span>
+      </div>
+      <p>日本全国のチェックポイントを地図で確認</p>
     </div>
-
-    <div class="prefecture-panel">
-
-        <div class="panel-title">
-            都道府県
-        </div>
-
-        <div class="status-area">
-            <div id="drawnCount">
-                抽選済み：0県
-            </div>
-
-            <div id="remainingCount">
-                残り：47県
-            </div>
-        </div>
-
-        <div id="prefectureList" class="prefecture-list"></div>
-
+    <div class="overall-progress">
+      <span id="overallCount">0 / 0</span>
+      <div class="progress-track">
+        <div id="overallProgressBar" class="progress-bar"></div>
+      </div>
     </div>
+  </header>
 
-</div>
+  <main class="app-layout">
+    <section class="map-panel">
+      <div class="map-toolbar">
+        <input id="stationSearchInput" type="search" placeholder="駅名を入力（例：新大阪駅）">
+        <button id="stationSearchButton" type="button">駅名検索</button>
+        <button id="areaStationSearchButton" type="button" class="secondary">この範囲の駅を検索</button>
+      </div>
 
-<script src="script.js"></script>
+      <div id="searchPanel" class="search-panel hidden">
+        <div class="search-panel-header">
+          <strong>駅検索結果</strong>
+          <button id="closeSearchPanel" type="button" aria-label="閉じる">×</button>
+        </div>
+        <div id="searchStatus" class="search-status"></div>
+        <div id="stationSearchResults" class="station-search-results"></div>
+      </div>
 
+      <div id="map"></div>
+    </section>
+
+    <aside class="sidebar">
+      <section class="sidebar-section">
+        <h2>ラリー</h2>
+
+        <div class="rally-create-box">
+          <input
+            id="newRallyName"
+            type="text"
+            maxlength="60"
+            placeholder="新しいラリー名"
+          >
+          <button id="createRallyButton" type="button">＋ 作成</button>
+        </div>
+
+        <div class="rally-filter-box">
+          <input
+            id="rallyListFilter"
+            type="search"
+            placeholder="ラリー名で絞り込み"
+            autocomplete="off"
+          >
+          <button id="clearRallyListFilter" type="button">クリア</button>
+        </div>
+
+        <div class="rally-status-filter">
+          <label for="rallyAchievementFilter">達成状況</label>
+          <select id="rallyAchievementFilter">
+            <option value="all">すべて</option>
+            <option value="completed">達成済み</option>
+            <option value="incomplete">未達成</option>
+          </select>
+        </div>
+
+        <label class="show-all-rallies-option">
+          <input id="showAllRalliesCheckbox" type="checkbox">
+          <span>地図範囲外のラリーもすべて表示</span>
+        </label>
+
+        <div id="rallyFilterSummary" class="rally-filter-summary"></div>
+
+        <label class="visible-rallies-master-option">
+          <input id="visibleRalliesMasterCheckbox" type="checkbox">
+          <span>現在表示中のラリーを全選択 / 全解除</span>
+        </label>
+
+        <div id="rallyDashboardList" class="rally-dashboard-list"></div>
+      </section>
+
+      <section class="sidebar-section">
+        <h2>登録不要駅</h2>
+        <div id="ignoredStationList" class="ignored-station-list"></div>
+      </section>
+
+      <section class="sidebar-section legend">
+        <h2>凡例</h2>
+        <div><span class="legend-dot visited"></span> 訪問済み</div>
+        <div><span class="legend-dot unvisited"></span> 未訪問</div>
+        <div><span class="legend-dot search-result"></span> 検索結果</div>
+        <div><span class="legend-dot ignored"></span> 登録不要（選択直後のみ）</div>
+      </section>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
