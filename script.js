@@ -1234,22 +1234,12 @@ function updateVisibleRalliesMasterCheckbox() {
 }
 
 function setAllVisibleRalliesMapVisibility(visible) {
-  const visibleRallies = getViewportFilteredRallies();
+  const rallies = getViewportFilteredRallies();
+  const states = normalizeAllRallyVisibilityStates();
 
-  // 一括操作時は、地図範囲外を含む全ラリーをまずOFFとして固定する。
-  // これにより、後から地図範囲を広げても未選択ラリーが
-  // 勝手にONへ戻らない。
-  const states = {};
-
-  stampRallies.forEach(rally => {
-    states[rally.id] = false;
+  rallies.forEach(rally => {
+    states[rally.id] = Boolean(visible);
   });
-
-  if (visible) {
-    visibleRallies.forEach(rally => {
-      states[rally.id] = true;
-    });
-  }
 
   saveRallyVisibilityStates(states);
   applyStoredRallyVisibility();
@@ -1286,17 +1276,9 @@ function buildRallyDashboard() {
     const visited = rally.checkpoints.filter(cp => cp.visited).length;
     const percent = total === 0 ? 0 : Math.round((visited / total) * 100);
     const stationEntryComplete = isStationEntryComplete(rally.id);
-    const allStationsCompleted = total > 0 && visited === total;
 
     const card = document.createElement("div");
     card.className = "rally-dashboard-card";
-
-    if (stationEntryComplete && allStationsCompleted) {
-      card.classList.add("rally-status-complete");
-    } else if (stationEntryComplete) {
-      card.classList.add("rally-status-entry-complete");
-    }
-
     if (openRallyCardIds.has(rally.id)) {
       card.classList.add("open");
     }
@@ -1363,13 +1345,7 @@ function buildRallyDashboard() {
           </div>
 
           <div class="rally-dashboard-status">
-            ${
-              stationEntryComplete && allStationsCompleted
-                ? '<span class="station-entry-complete-badge station-entry-complete-badge--achieved">駅登録完了・全駅達成</span>'
-                : stationEntryComplete
-                  ? '<span class="station-entry-complete-badge">駅登録完了</span>'
-                  : ""
-            }
+            ${stationEntryComplete ? '<span class="station-entry-complete-badge">駅登録完了</span>' : ""}
           </div>
 
           <div class="rally-dashboard-count">${visited} / ${total}</div>
@@ -1435,14 +1411,7 @@ function buildRallyDashboard() {
       const layer = rallyLayers[rally.id];
       if (!layer) return;
 
-      const states = loadRallyVisibilityStates();
-
-      stampRallies.forEach(item => {
-        if (!Object.prototype.hasOwnProperty.call(states, item.id)) {
-          states[item.id] = false;
-        }
-      });
-
+      const states = normalizeAllRallyVisibilityStates();
       states[rally.id] = visibleCheckbox.checked;
       saveRallyVisibilityStates(states);
 
