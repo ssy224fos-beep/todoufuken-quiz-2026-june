@@ -48,12 +48,10 @@ body {
     content: "";
     display: block;
     flex: 0 0 auto;
-    width: 16px;
-    height: 16px;
-    background: #ffd84d;
-    transform: rotate(45deg);
-    border-radius: 3px;
-    box-shadow: 0 0 5px rgba(255, 216, 77, 0.35);
+    width: 22px;
+    height: 22px;
+    background-color: #ffd84d;
+    clip-path: polygon(50% 0%, 63% 35%, 100% 38%, 72% 60%, 81% 96%, 50% 76%, 19% 96%, 28% 60%, 0% 38%, 37% 35%);
 }
 
 .page-title span {
@@ -484,34 +482,7 @@ button:disabled {
         gap: 10px;
     }
 
-	.page-title::before,
-	.page-title::after {
-	    content: "";
-	    display: block;
 	
-	    width: 18px;
-	    height: 18px;
-	
-	    background: #ffd84d;
-	
-	    clip-path: polygon(
-	        50% 0%,
-	        61% 35%,
-	        100% 38%,
-	        70% 60%,
-	        79% 100%,
-	        50% 75%,
-	        21% 100%,
-	        30% 60%,
-	        0% 38%,
-	        39% 35%
-	    );
-
-    filter:
-        drop-shadow(
-            0 0 4px rgba(255, 216, 77, 0.35)
-        );
-}
     .container {
         height: calc(100vh - 55px);
         padding: 6px 10px 10px;
